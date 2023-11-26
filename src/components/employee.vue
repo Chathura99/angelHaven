@@ -51,7 +51,7 @@ export default {
 
      async mounted()
      {
-        let result = await axios.get("https://reqres.in/api/users?page=1");
+        let result = await axios.get("https://reqres.in/api/users?page=2");
         // console.warn(result.data.data)
         this.list = result.data.data
      }
