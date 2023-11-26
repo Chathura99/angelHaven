@@ -1,7 +1,7 @@
 <template>
   <div class="container">
     <div class="section-title">
-      <h3 class="faqsection" style="font-size: 45.8px; font-weight: bold; margin-top: 40px;text-align: center;">1. Contact Us</h3>
+      <h3 class="faqsection" style="font-size: 45.8px; font-weight: bold; margin-top: 40px;text-align: center;"> Contact Us .</h3>
     </div>
     <div class="row">
       <div class="col-md-6 offset-md-3">
@@ -74,7 +74,7 @@ export default {
 
     async createUser() {
       if (this.validateForm()) {
-        const colRef = collection(db, 'users');
+        const colRef = collection(db, 'contact_us');
         const dataObj = {
           firstName: this.firstName,
           lastName: this.lastName,
@@ -91,7 +91,7 @@ export default {
         Swal.fire({
           icon: 'success',
           title: 'Success!',
-          text: 'Form submitted successfully!'
+          text: 'Message Send successfully!'
         });
 
         // Clear text boxes
