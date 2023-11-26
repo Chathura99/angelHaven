@@ -1,34 +1,52 @@
-<template> 
+<template>
     <nav class="navbar">
-        <div class="navbar-container container">
-            <input type="checkbox" name="lb1" id="lb1">
-            <div class="hamburger-lines">
-                <span class="line line1"></span>
-                <span class="line line2"></span>
-                <span class="line line3"></span>
-            </div>
-            <ul class="menu-items">
-                <li><RouterLink to="/adminhome">Bookings</RouterLink></li>
-                <li><RouterLink to="adminhome1">Inventory</RouterLink></li>
-                <li><RouterLink to="/MyProfile2">Profile</RouterLink></li>
-                <!-- <li><RouterLink to="adminhome2">Update</RouterLink></li> -->
-                <li><a @click="showLogoutPopup"><RouterLink to="/Loging">Logout</RouterLink></a></li>
-            </ul>
-            <h1 class="logo"><b>AngelHaven</b></h1>
+      <div class="navbar-container container">
+        <input type="checkbox" name="lb1" id="lb1">
+        <div class="hamburger-lines">
+          <span class="line line1"></span>
+          <span class="line line2"></span>
+          <span class="line line3"></span>
         </div>
+        <ul class="menu-items">
+          <li><RouterLink to="/adminhome">Bookings</RouterLink></li>
+          <li><RouterLink to="adminhome1">Inventory</RouterLink></li>
+          <li><RouterLink to="/MyProfile2">Profile</RouterLink></li>
+          <li><a @click="showLogoutPopup">Logout</a></li>
+        </ul>
+        <h1 class="logo"><b>AngelHaven</b></h1>
+      </div>
     </nav>
-</template>
-
-<script>
-export default {
+  </template>
+  
+  <script>
+  import Swal from 'sweetalert2';
+  
+  export default {
     methods: {
-        showLogoutPopup() {
-            // Display your pop-up message here
-            alert('Are you sure you want to go back?');
-        }
+      showLogoutPopup() {
+        Swal.fire({
+          title: 'Are you sure?',
+          text: 'You want to go back?',
+          icon: 'warning',
+          showCancelButton: true,
+          confirmButtonColor: '#3085d6',
+          cancelButtonColor: '#d33',
+          confirmButtonText: 'Yes, logout!'
+        }).then((result) => {
+          if (result.isConfirmed) {
+            // Handle logout logic here
+            Swal.fire(
+              'Logged Out!',
+              'You have been logged out.',
+              'success'
+            );
+            this.$router.push('/');
+          }
+        });
+      }
     }
-};
-</script>
+  };
+  </script>
 
 <style scoped>
 *,

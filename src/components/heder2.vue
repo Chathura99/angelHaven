@@ -8,7 +8,9 @@
                 <span class="line line3"></span>
             </div>
             <ul class="menu-items">
-                <li><a @click="showLogoutPopup"><RouterLink to="/Loging">Logout</RouterLink></a></li>
+                <!-- <li><a @click="showLogoutPopup"><RouterLink to="/Loging">Logout</RouterLink></a></li> -->
+                <li><a @click="showLogoutPopup">Logout</a></li>
+
                 <li><a ><RouterLink to="/mealplain">Home</RouterLink></a></li>
                 <li><a ><RouterLink to="/MyProfile">My Profile</RouterLink></a></li>
             </ul>
@@ -18,16 +20,37 @@
 </template>
 
 
+
 <script>
+import Swal from 'sweetalert2';
+
 export default {
-    methods: {
-        showLogoutPopup() {
-            // Display your pop-up message here
-            alert('Are you sure you want to go back?');
+  methods: {
+    showLogoutPopup() {
+      Swal.fire({
+        title: 'Are you sure?',
+        text: 'You want to go back?',
+        icon: 'warning',
+        showCancelButton: true,
+        confirmButtonColor: '#3085d6',
+        cancelButtonColor: '#d33',
+        confirmButtonText: 'Yes, logout!'
+      }).then((result) => {
+        if (result.isConfirmed) {
+          // Handle logout logic here
+          Swal.fire(
+            'Logged Out!',
+            'You have been logged out.',
+            'success'
+          );
+          this.$router.push('/');
         }
+      });
     }
+  }
 };
 </script>
+
 
 
 <style scoped>
