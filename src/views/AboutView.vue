@@ -9,7 +9,7 @@
   <main>
     <heder1/>
     <aboutus/>
-    <EmployeeDetails/>
+    <!-- <EmployeeDetails/> -->
     <footersection/>
   </main>
 </template>
