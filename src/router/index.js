@@ -1,6 +1,7 @@
 import { createRouter, createWebHistory } from 'vue-router'
 import HomeView from '../views/HomeView.vue'
-import HomeDonaite from '../views/HomeDonaite.vue'
+import HomeDonate from '../views/HomeDonate.vue'
+import RegisterView from '../views/RegisterView.vue'
 const router = createRouter({
   history: createWebHistory(import.meta.env.BASE_URL),
   routes: [
@@ -15,14 +16,19 @@ const router = createRouter({
       component: () => import('../views/AboutView.vue')
     },
     {
-      path: '/HomeDonaite',
-      name: 'HomeDonaite',
-      component: HomeDonaite
+      path: '/HomeDonate',
+      name: 'HomeDonate',
+      component: HomeDonate
     },
     {
       path: '/Loging',
       name: 'Loging',
       component: () => import('../views/Loging.vue')
+    },
+    {
+      path: '/Register',
+      name: 'Register',
+      component: () => import('../views/RegisterView.vue')
     },
     {
       path: '/mealplain',
@@ -63,6 +69,11 @@ const router = createRouter({
       path: '/CRM',
       name: 'CRM',
       component: () => import('../views/CRM.vue')
+    },
+    {
+      path: '/MyProfile',
+      name: 'MyProfile',
+      component: () => import('../views/MyProfile.vue')
     },
   ]
 })
