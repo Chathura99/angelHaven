@@ -8,10 +8,11 @@
                 <span class="line line3"></span>
             </div>
             <ul class="menu-items">
-                <li><RouterLink to="/adminhome">View</RouterLink></li>
-                <li><RouterLink to="adminhome1">Materials Management</RouterLink></li>
-                <li><RouterLink to="adminhome2">Update</RouterLink></li>
-                <li><a @click="showLogoutPopup"><RouterLink to="/adminlogin">Logout</RouterLink></a></li>
+                <li><RouterLink to="/adminhome">Bookings</RouterLink></li>
+                <li><RouterLink to="adminhome1">Inventory</RouterLink></li>
+                <li><RouterLink to="/MyProfile2">Profile</RouterLink></li>
+                <!-- <li><RouterLink to="adminhome2">Update</RouterLink></li> -->
+                <li><a @click="showLogoutPopup"><RouterLink to="/Loging">Logout</RouterLink></a></li>
             </ul>
             <h1 class="logo"><b>AngelHaven</b></h1>
         </div>
