@@ -5,9 +5,9 @@
       <div class="grid grid-cols-1 gap-4 gap-lg-5">
         <div class="mb-4">
           <div class="group hover:scale-105 delay-150 rounded-lg shadow-lg p-4" style="background: white; background-image: url(''); background-size: cover; background-position: center;">
-  
+
             <div class="overflow-hidden h-60 rounded-md lg:aspect-none flex items-center justify-center mx-auto group-hover:opacity-75">
-  
+
             </div>
           
             <div class="mt-4">
@@ -15,10 +15,14 @@
               <p class="text-gray-600 text-center">Your support is greatly appreciated. Help us make a difference by making a donation today.</p>
             </div>
           
-            <button id="BuyButton" class="bg-blue-500 hover:bg-blue-600 absolute top-0 left-1/2 transform -translate-x-1/2 mt-2 py-2 px-4 rounded-lg focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-blue-500">
+            <!-- <button @click="handleDonateNow" class="bg-blue-500 hover:bg-blue-600 absolute top-0 left-1/2 transform -translate-x-1/2 mt-2 py-2 px-4 rounded-lg focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-blue-500">
+              <b>Donate Now</b>
+            </button> -->
+
+            <button id="BuyButton" @click="handleDonateNow" class="bg-blue-500 hover:bg-blue-600 absolute top-0 left-1/2 transform -translate-x-1/2 mt-2 py-2 px-4 rounded-lg focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-blue-500">
               <b>Donate Now</b>
             </button>
-  
+
           </div>
         </div>
       </div>
@@ -26,6 +30,41 @@
     <br>
   </div>
 </template>
+
+<script>
+import Swal from 'sweetalert2';
+import { getAuth, onAuthStateChanged } from 'firebase/auth';
+
+export default {
+  methods: {
+    handleDonateNow() {
+      const auth = getAuth();
+
+      // Check if the user is signed in
+      onAuthStateChanged(auth, (user) => {
+        if (user) {
+          // User is signed in, you can proceed with the donation logic here
+          // For example, route to the donation page
+          this.$router.push('/HomeDonate');
+        } else {
+          // User is not signed in, show a sweet alert and route to the register page
+          Swal.fire({
+            icon: 'info',
+            title: 'Please Sign Up',
+            text: 'To proceed with the donation, please sign up first.',
+            confirmButtonText: 'Go to Register',
+          }).then((result) => {
+            if (result.isConfirmed) {
+              // If the user clicks "Go to Register," route to the register page
+              this.$router.push('/register');
+            }
+          });
+        }
+      });
+    },
+  },
+};
+</script>
 
 <style scoped>
   #DonationTitle {
