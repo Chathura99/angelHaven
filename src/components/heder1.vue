@@ -10,8 +10,9 @@
             <ul class="menu-items">
                 <li><RouterLink to="/">Home</RouterLink></li>
                 <li><RouterLink to="/about">About Us</RouterLink></li>
-                <li><RouterLink to="/HomeDonaite">Donation</RouterLink></li>
-                <li><RouterLink to="/Loging">Loging</RouterLink></li>
+                <li><RouterLink to="/HomeDonate">Donation</RouterLink></li>
+                <li><RouterLink to="/Loging">Sign In</RouterLink></li>
+                <li><RouterLink to="/Register">Sign Up</RouterLink></li>
             </ul>
             <h1 class="logo"><b>AngelHaven</b></h1>
         </div>
