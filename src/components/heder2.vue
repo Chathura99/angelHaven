@@ -9,6 +9,8 @@
             </div>
             <ul class="menu-items">
                 <li><a @click="showLogoutPopup"><RouterLink to="/Loging">Logout</RouterLink></a></li>
+                <li><a ><RouterLink to="/mealplain">Home</RouterLink></a></li>
+                <li><a ><RouterLink to="/MyProfile">My Profile</RouterLink></a></li>
             </ul>
             <h1 class="logo">AngelHaven</h1>
         </div>
