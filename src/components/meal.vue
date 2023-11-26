@@ -18,11 +18,19 @@
       <div class="card">
         <h1 style="font-weight: bold">Lunch</h1>
         <p v-for="item in items.Lunch" :key="item">{{ item }}</p>
+        <!-- <input v-model="newLunchItem" id="newItem" class="form-control" placeholder="Enter new item" required>
+        <button @click="addItem('Lunch')" class="btn btn-primary"
+          style="margin-top: 20px; margin-bottom: 30px; color: black; background: white; border: 1px solid #f0d8b6; width: 100%;"><b>Add
+            Item</b></button> -->
       </div>
 
       <div class="card">
         <h1 style="font-weight: bold">Dinner</h1>
         <p v-for="item in items.Dinner" :key="item">{{ item }}</p>
+        <!-- <input v-model="newDinnerItem" id="newItem" class="form-control" placeholder="Enter new item" required>
+        <button @click="addItem('Dinner')" class="btn btn-primary"
+          style="margin-top: 20px; margin-bottom: 30px; color: black; background: white; border: 1px solid #f0d8b6; width: 100%;"><b>Add
+            Item</b></button> -->
       </div>
     </div>
   </div>
@@ -63,7 +71,7 @@ export default {
       const newItem = this[`new${mealType}Item`];
 
       // Update the data in Firestore for the specific meal type
-      const mealPlanRef = doc(db, 'meal_plan', 'your_document_id'); // Replace 'your_document_id' with your actual document ID
+      const mealPlanRef = doc(db, 'meal_plan', 'QSTmGE3hPtRgPksQ1bpb'); // Replace 'your_document_id' with your actual document ID
 
       // Create an object with the specific field to update
       const updateObject = {};
@@ -71,7 +79,7 @@ export default {
 
       updateDoc(mealPlanRef, updateObject)
         .then(() => {
-          console.log('Item added successfully');
+          console.log('Item added successfully',mealType);
         })
         .catch(error => {
           console.error('Error updating document:', error);
