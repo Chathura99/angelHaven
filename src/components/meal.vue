@@ -9,28 +9,28 @@
       <div class="card">
         <h1 style="font-weight: bold">Breakfast</h1>
         <p v-for="item in items.Breakfast" :key="item">{{ item }}</p>
-        <!-- <input v-model="newBreakfastItem" id="newItem" class="form-control" placeholder="Enter new item" required>
+        <input v-model="newBreakfastItem" id="newItem" class="form-control" placeholder="Enter new item" required>
         <button @click="addItem('Breakfast')" class="btn btn-primary"
           style="margin-top: 20px; margin-bottom: 30px; color: black; background: white; border: 1px solid #f0d8b6; width: 100%;"><b>Add
-            Item</b></button> -->
+            Item</b></button>
       </div>
 
       <div class="card">
         <h1 style="font-weight: bold">Lunch</h1>
         <p v-for="item in items.Lunch" :key="item">{{ item }}</p>
-        <!-- <input v-model="newLunchItem" id="newItem" class="form-control" placeholder="Enter new item" required>
+        <input v-model="newLunchItem" id="newItem" class="form-control" placeholder="Enter new item" required>
         <button @click="addItem('Lunch')" class="btn btn-primary"
           style="margin-top: 20px; margin-bottom: 30px; color: black; background: white; border: 1px solid #f0d8b6; width: 100%;"><b>Add
-            Item</b></button> -->
+            Item</b></button>
       </div>
 
       <div class="card">
         <h1 style="font-weight: bold">Dinner</h1>
         <p v-for="item in items.Dinner" :key="item">{{ item }}</p>
-        <!-- <input v-model="newDinnerItem" id="newItem" class="form-control" placeholder="Enter new item" required>
+        <input v-model="newDinnerItem" id="newItem" class="form-control" placeholder="Enter new item" required>
         <button @click="addItem('Dinner')" class="btn btn-primary"
           style="margin-top: 20px; margin-bottom: 30px; color: black; background: white; border: 1px solid #f0d8b6; width: 100%;"><b>Add
-            Item</b></button> -->
+            Item</b></button>
       </div>
     </div>
   </div>
@@ -57,6 +57,7 @@ export default {
     fetchData() {
       getDocs(collection(db, 'meal_plan'))
         .then(querySnapshot => {
+          console.log(doc)
           querySnapshot.forEach(doc => {
             this.items = doc.data();
             console.log(this.items);
@@ -73,21 +74,27 @@ export default {
       // Update the data in Firestore for the specific meal type
       const mealPlanRef = doc(db, 'meal_plan', 'QSTmGE3hPtRgPksQ1bpb'); // Replace 'your_document_id' with your actual document ID
 
+      // Get the existing meal plan data
+      const mealPlanData = this.items;
+
+      // Update the specific meal type array
+      mealPlanData[mealType].push(newItem);
+
       // Create an object with the specific field to update
       const updateObject = {};
-      updateObject[mealType] = this.items[mealType];
+      updateObject[mealType] = mealPlanData[mealType];
 
       updateDoc(mealPlanRef, updateObject)
         .then(() => {
-          console.log('Item added successfully',mealType);
+          console.log('Item added successfully', mealType);
+          // Clear the input field after successful addition
+          this[`new${mealType}Item`] = '';
         })
         .catch(error => {
           console.error('Error updating document:', error);
         });
-
-      // Clear the input field
-      this[`new${mealType}Item`] = '';
     },
+
 
   },
 };

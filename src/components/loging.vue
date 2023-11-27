@@ -86,7 +86,7 @@ export default {
                 this.$router.push('/mealplain');
             } catch (error) {
                 console.error('Error signing in with Google:', error.message);
-                alert('Error signing in with Google. Please try again.');
+                alert('Error signing in with Google. Please try again.\n',error.message);
             }
         },
 
@@ -112,17 +112,18 @@ export default {
                         this.$router.push('/mealplain');
                     } else {
                         this.isSignedIn = true;
-                        this.$router.push('/Lof=ging');
+                        this.$router.push('/Loging');
                     }
 
                     // this.isSignedIn = true;
                     // this.$router.push('/mealplain');
                 }
             } catch (error) {
+                console.log(error)
                 Swal.fire({
                     icon: 'error',
                     title: 'Login Failed',
-                    text: 'Error signing in. Please check your email and password.'
+                    text: 'Error signing in. Please check your email and password.\n'
                 });
             }
         },
