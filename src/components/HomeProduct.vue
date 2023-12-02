@@ -1,33 +1,47 @@
 <template>
   <div id="backcolour">
-      <h1 style="text-align:center; margin-top: 30px;font-size: 45.8px;margin-bottom: 37px; font-weight: bold;">Angel Haven Orphanage</h1>
+    <h1 style="text-align:center; margin-top: 30px; font-size: 45.8px; margin-bottom: 37px; font-weight: bold;">Angel Haven Orphanage - Required Items</h1>
 
-      <div class="card-container">
-          <div class="card">
-              <h1>Orphanage Programs</h1>
-          </div>
-
-          <div class="card">
-              <h1>Adoption Services</h1>
-          </div>
-
-          <div class="card">
-              <h1>Education and Support</h1>
-          </div>
-
-          <div class="card">
-              <h1>Child Medical Care</h1>
-          </div>
+    <div class="card-container">
+      <div class="card" v-for="requirement in requirements" :key="requirement.id">
+        <h5>{{ requirement.requiredItem }}</h5>
+        <p>{{ requirement.numberOfItems }} Items</p>
       </div>
+    </div>
   </div>
 </template>
 
-          
 <script>
-    export default {
-        name: 'HomeProduct'   
-    }
+import { getDocs, collection } from 'firebase/firestore';
+import db from '../firebase/init.js';
+
+export default {
+  name: 'HomeProduct',
+  data() {
+    return {
+      requirements: [],
+    };
+  },
+  methods: {
+    async fetchRequirements() {
+      try {
+        const querySnapshot = await getDocs(collection(db, 'requirements'));
+        this.requirements = querySnapshot.docs.map(doc => ({
+          id: doc.id,
+          ...doc.data(),
+        }));
+      } catch (error) {
+        console.error('Error fetching requirements:', error);
+      }
+    },
+  },
+  mounted() {
+    this.fetchRequirements();
+  },
+};
 </script>
+
+
 
 <style scoped>
 .card {
