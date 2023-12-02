@@ -51,6 +51,11 @@ const router = createRouter({
       component: () => import('../views/adminhome2.vue')
     },
     {
+      path: '/Requirements',
+      name: 'requirements',
+      component: () => import('../views/Requirement.vue')
+    },
+    {
       path: '/adminlogin',
       name: 'adminlogin',
       component: () => import('../views/adminlogin.vue')

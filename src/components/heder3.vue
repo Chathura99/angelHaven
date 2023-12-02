@@ -10,6 +10,7 @@
         <ul class="menu-items">
           <li><RouterLink to="/adminhome">Bookings</RouterLink></li>
           <li><RouterLink to="adminhome1">Inventory</RouterLink></li>
+          <li><RouterLink to="/Requirements">Requirement</RouterLink></li>
           <li><RouterLink to="/MyProfile2">Profile</RouterLink></li>
           <li><a @click="showLogoutPopup">Logout</a></li>
         </ul>
